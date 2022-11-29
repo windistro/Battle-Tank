@@ -4,6 +4,8 @@ from OpenGL.GLU import *
 
 pos_x = 0
 pos_y = 0
+pos_x_min_gun = 218
+pos_x_max_gun = 221
 
 def iterate():
     glViewport(0, 0, 900, 800) 
@@ -99,6 +101,11 @@ def wall():
     glVertex2f(800,0)
     glEnd()
 
+def bullet(pos):
+    glColor3f(1,1,0)
+    glBegin(GL_QUADS)
+    glVertex2f()
+
 def update(value):
     glutPostRedisplay()
     glutTimerFunc(10,update,0)
@@ -109,6 +116,12 @@ def keyboard(key,x,y):
         pos_x -= 10
     elif key == b'd':
         pos_x += 10
+    elif key == b'w':
+        pos_y += 10
+    elif key == b's':
+        pos_y -= 10
+    elif key == b' ':
+        bullet()
 
 def showScreen():
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT) 
