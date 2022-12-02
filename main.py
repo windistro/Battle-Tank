@@ -1,19 +1,12 @@
 from OpenGL.GL import * 
 from OpenGL.GLUT import * 
 from OpenGL.GLU import *
+from object import *
 
 pos_x = 0
 pos_y = 0
 pos_x_min_gun = 218
 pos_x_max_gun = 221
-
-def iterate():
-    glViewport(0, 0, 900, 800) 
-    glMatrixMode(GL_PROJECTION) 
-    glLoadIdentity()
-    glOrtho(0.0, 900, 0.0, 800, 0.0, 1.0) 
-    glMatrixMode (GL_MODELVIEW) 
-    glLoadIdentity()
 
 def tank():
     global pos_x, pos_y
@@ -69,42 +62,75 @@ def tank():
     glVertex2f(224,124)
     glVertex2f(215,124)
     glVertex2f(215,124)
-    glVertex2f(215,115)
+    glVertex2f(215,115) 
     glEnd()
 
-def hp():
-    glColor3f(1,0,0.2)
-    glTranslatef(150,0,0)
-    glBegin(GL_POLYGON)
-    glVertex2f(700, 615)
-    glVertex2f(665, 665)
-    glVertex2f(665, 675)
-    glVertex2f(675, 700)
-    glVertex2f(690, 700)
-    glVertex2f(700, 675)
-    glEnd()
-    glBegin(GL_POLYGON)
-    glVertex2f(700, 615)
-    glVertex2f(735, 665)
-    glVertex2f(735, 675)
-    glVertex2f(725, 700)
-    glVertex2f(710, 700)
-    glVertex2f(700, 675)
-    glEnd()
+def iterate():
+    glViewport(0, 0, 900, 800) 
+    glMatrixMode(GL_PROJECTION) 
+    glLoadIdentity()
+    glOrtho(0.0, 900, 0.0, 800, 0.0, 1.0) 
+    glMatrixMode (GL_MODELVIEW) 
+    glLoadIdentity()
 
-def wall():
-    glColor3f(0.5,0.5,0.5)
+def drawText(ch,xpos,ypos,r,b,g):
+    color = (r, b, g)
+    font_style = GLUT.GLUT_BITMAP_8_BY_13
+    glColor3ub(color[0],color[1],color[2])
+    line=0
+    glRasterPos2f (xpos, ypos)
+    for i in ch:
+       if  i=='\n':
+          line=line+1
+          glRasterPos2f (xpos, ypos*line)
+       else:
+          glutBitmapCharacter(font_style, ord(i))    
+ 
+def drawTextBold(ch,xpos,ypos):
+    glPushMatrix()
+    color = (0,0,0)
+    font_style = GLUT.GLUT_BITMAP_HELVETICA_18
+    glColor3ub(color[0],color[1],color[2])
+    line=0
+    glRasterPos2f (xpos, ypos)
+    for i in ch:
+       if  i=='\n':
+          line=line+1
+          glRasterPos2f (xpos, ypos*line)
+       else:
+          glutBitmapCharacter(font_style, ord(i))  
+    glPopMatrix()  
+
+def bg_text(x,y):
+    glColor3ub(0, 255, 255)     
     glBegin(GL_QUADS)
-    glVertex2f(800,800)
-    glVertex2f(900,800)
-    glVertex2f(900,0)
-    glVertex2f(800,0)
+    glVertex2f(285+x,230+y)
+    glVertex2f(495+x,230+y)
+    glVertex2f(495+x,280+y)
+    glVertex2f(285+x,280+y)
     glEnd()
+       
+def drawTextNum(skor,xpos,ypos,r,b,g):
+    color = (r, b, g)
+    font_style = GLUT.GLUT_BITMAP_8_BY_13
+    glColor3ub(color[0],color[1],color[2])
+    line=0
+    glRasterPos2f (xpos, ypos)
+    for i in str(skor):
+       if  i=='\n':
+          line=line+1
+          glRasterPos2f (xpos, ypos*line)
+       else:
+          glutBitmapCharacter(font_style, ord(i))
+
+def mainmenu():
+    glColor3f(1,1,1)
+    
 
 def bullet(pos):
     glColor3f(1,1,0)
     glBegin(GL_QUADS)
-    glVertex2f()
+    glVertex2f(pos_x_min_gun, )
 
 def update(value):
     glutPostRedisplay()
