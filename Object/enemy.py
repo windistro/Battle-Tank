@@ -216,3 +216,16 @@ def alien():
     glVertex2f(200,260)
     
     glEnd()
+
+def display():
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT) 
+    glLoadIdentity()
+    glViewport(0, 0, 900, 800) 
+    glMatrixMode(GL_PROJECTION) 
+    glLoadIdentity()
+    glOrtho(-450, 450, -400, 400, 0.0, 1.0) 
+    glMatrixMode (GL_MODELVIEW) 
+    glLoadIdentity()
+
+glutInit()
+glutDisplayFunc(display)

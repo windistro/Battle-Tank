@@ -1,19 +1,19 @@
 from OpenGL.GL import * 
 from OpenGL.GLUT import * 
 from OpenGL.GLU import *
-from main import keyboard
+
+pos_x = 215
+pos_y = 118
 
 class Tank():
-    def __init__(self,x_min, x_max, y_min, y_max) -> None:
-        self._x_min = x_min
-        self._x_max = x_max
-        self._y_min = y_min
-        self._y_max = y_max
+    def __init__(self,pos_x, pos_y):
+        self._pos_x = pos_x
+        self._pos_y = pos_y
 
     def player(self):
         glColor3f(1,1,0)
         glBegin(GL_POLYGON)
-        glVertex2f()
+        glVertex2f(self._pos_x + 60, self._pos_y)
         glEnd()
 
     def bullet(self):
@@ -22,11 +22,11 @@ class Tank():
         glVertex2f()
         glEnd()
 
-pos_x = 215
-pos_y = 118
 
 def tank():
     global pos_x, pos_y
+    glScaled(4,4,1)
+    glTranslatef(-500, -200, 0)
     glTranslatef(pos_x, pos_y, 0)
     glColor3f(1,1,0)
     glBegin(GL_POLYGON)
@@ -93,6 +93,16 @@ def keyboard(key,x,y):
     elif key == b's':
         pos_y -= 10
 
+def display():
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT) 
+    glLoadIdentity()
+    glViewport(0, 0, 900, 800) 
+    glMatrixMode(GL_PROJECTION) 
+    glLoadIdentity()
+    glOrtho(-450, 450, -400, 400, 0.0, 1.0) 
+    glMatrixMode (GL_MODELVIEW) 
+    glLoadIdentity()
+
 glutInit()
-glutInitDisplayMode(GLUT_RGBA) 
+glutDisplayFunc(display)
 glutKeyboardFunc(keyboard)

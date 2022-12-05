@@ -2,8 +2,6 @@ from OpenGL.GL import *
 from OpenGL.GLUT import * 
 from OpenGL.GLU import *
 
-w,h = 900, 800
-
 def hp():
     glColor3f(1,0,0.2)
     glBegin(GL_POLYGON)

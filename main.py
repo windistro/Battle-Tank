@@ -4,7 +4,7 @@ from OpenGL.GLU import *
 from Object.environment import *
 from Object.player import *
 from Object.enemy import *
-from random import randint
+import random as rd
 import ctypes
 
 pos_x = 200
@@ -33,66 +33,7 @@ def comet(x,y):
 def initial():
     drawText("Press Space to Play", -100 , 0, 255, 255, 255)
     for i in range(100):
-        comet(-w/2,randint(-h,h))
-
-def tank():
-    global pos_x, pos_y
-    glTranslatef(-1100, -1000, 0)
-    glTranslatef(pos_x, pos_y, 0)
-    glScaled(4,4,1)
-    glColor3f(1,1,0)
-    glBegin(GL_POLYGON)
-    glVertex2f(209,100)
-    glVertex2f(200,100)
-    glVertex2f(200,136)
-    glVertex2f(209,136)
-    glEnd()
-    glBegin(GL_POLYGON)
-    glVertex2f(209,103)
-    glVertex2f(215,103)
-    glVertex2f(215,133)
-    glVertex2f(209,133)
-    glEnd()
-    glBegin(GL_POLYGON)
-    glVertex2f(215,103)
-    glVertex2f(224,103)
-    glVertex2f(224,136)
-    glVertex2f(215,136)
-    glEnd()
-    glBegin(GL_POLYGON)
-    glVertex2f(224,103)
-    glVertex2f(230,103)
-    glVertex2f(230,133)
-    glVertex2f(224,133)
-    glEnd()
-    glBegin(GL_POLYGON)
-    glVertex2f(230,100)
-    glVertex2f(239,100)
-    glVertex2f(239,136)
-    glVertex2f(230,136)
-    glEnd()
-    glBegin(GL_QUADS)
-    glVertex2f(218,136)
-    glVertex2f(221,136)
-    glVertex2f(221,148)
-    glVertex2f(218,148)
-    glEnd()
-    #### Hiasan ####
-    glColor3f(0,0,0)
-    glBegin(GL_LINES)
-    glVertex2f(209,100)
-    glVertex2f(209,136)
-    glVertex2f(230,100)
-    glVertex2f(230,136)
-    glVertex2f(215,115)
-    glVertex2f(224,115)
-    glVertex2f(224,115)
-    glVertex2f(224,124)
-    glVertex2f(224,124)
-    glVertex2f(215,124)
-    glVertex2f(215,124)
-    glVertex2f(215,115) 
-    glEnd()
+        comet(-w/2,rd.randint(-h,h))
 
 def iterate():
     glViewport(0, 0, 900, 800) 
@@ -104,6 +45,7 @@ def iterate():
 
 def drawText(text,xpos,ypos,r,g,b):
     color = (r,g,b)
+    glLineWidth(5)
     font_style = GLUT_BITMAP_9_BY_15
     glColor3ub(color[0],color[1],color[2])
     line=0
@@ -125,16 +67,16 @@ def key_init(key,x,y):
         start = True
         glutKeyboardFunc(keyboard)
 
-def keyboard(key,x,y):
-    global pos_x, pos_y
-    if key == b'a':
-        pos_x -= 50
-    elif key == b'd':
-        pos_x += 50
-    elif key == b'w':
-        pos_y += 50
-    elif key == b's':
-        pos_y -= 50
+# def keyboard(key,x,y):
+#     global pos_x, pos_y
+#     if key == b'a':
+#         pos_x -= 50
+#     elif key == b'd':
+#         pos_x += 50
+#     elif key == b'w':
+#         pos_y += 50
+#     elif key == b's':
+#         pos_y -= 50
     # elif key == b' ':
     #     bullet()
 
