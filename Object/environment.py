@@ -2,9 +2,10 @@ from OpenGL.GL import *
 from OpenGL.GLUT import * 
 from OpenGL.GLU import *
 
+w,h = 900, 800
+
 def hp():
     glColor3f(1,0,0.2)
-    glTranslatef(150,0,0)
     glBegin(GL_POLYGON)
     glVertex2f(700, 615)
     glVertex2f(665, 665)
@@ -25,8 +26,21 @@ def hp():
 def wall():
     glColor3f(0.5,0.5,0.5)
     glBegin(GL_QUADS)
-    glVertex2f(800,800)
-    glVertex2f(900,800)
-    glVertex2f(900,0)
-    glVertex2f(800,0)
+    glVertex2f(350,400)
+    glVertex2f(450,400)
+    glVertex2f(450,-400)
+    glVertex2f(350,-400)
     glEnd()
+
+def display():
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT) 
+    glLoadIdentity()
+    glViewport(0, 0, 900, 800) 
+    glMatrixMode(GL_PROJECTION) 
+    glLoadIdentity()
+    glOrtho(-450, 450, -400, 400, 0.0, 1.0) 
+    glMatrixMode (GL_MODELVIEW) 
+    glLoadIdentity()
+
+glutInit()
+glutDisplayFunc(display)
