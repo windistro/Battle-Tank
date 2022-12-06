@@ -3,6 +3,9 @@ from OpenGL.GLUT import *
 from OpenGL.GLU import *
 
 def gameover():
+    glPushMatrix()
+    glScale(0.5,0.5,0)
+    glTranslate(-500,0,0)
     #kotak backgorund
     glScaled(1.5,1.5,0)
     glColor3ub(255,255,255)
@@ -438,13 +441,14 @@ def gameover():
     glVertex2f(560,-80)
     glVertex2f(540,-80)
     glEnd()
+    glPopMatrix()
 
 
 def iterate():
-    glViewport(0, 0, 1000, 1000) 
+    glViewport(0, 0, 900, 800) 
     glMatrixMode(GL_PROJECTION) 
     glLoadIdentity()
-    glOrtho(-1000, 1000, -1000, 1000 , 0.0, 1.0) 
+    glOrtho(-450, 450, -400, 400, 0.0, 1.0) 
     glMatrixMode (GL_MODELVIEW) 
     glLoadIdentity()
 
@@ -457,7 +461,7 @@ def showScreen():
 
 glutInit()
 glutInitDisplayMode(GLUT_RGBA) 
-glutInitWindowSize(1000, 800) 
+glutInitWindowSize(900, 800) 
 glutInitWindowPosition(500, 100)
 
 wind = glutCreateWindow("BattleCity") 
