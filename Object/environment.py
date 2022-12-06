@@ -3,8 +3,9 @@ from OpenGL.GLUT import *
 from OpenGL.GLU import *
 
 def hp():
+    glPushMatrix()
     glColor3f(1,0,0.2)
-    glBegin(GL_POLYGON)
+    glBegin(GL_POLYGON)     # 900 x 800 > 450 x 400
     glVertex2f(700, 615)
     glVertex2f(665, 665)
     glVertex2f(665, 675)
@@ -20,8 +21,10 @@ def hp():
     glVertex2f(710, 700)
     glVertex2f(700, 675)
     glEnd()
+    glPopMatrix()
 
 def wall():
+    glPushMatrix()
     glColor3f(0.5,0.5,0.5)
     glBegin(GL_QUADS)
     glVertex2f(350,400)
@@ -29,6 +32,7 @@ def wall():
     glVertex2f(450,-400)
     glVertex2f(350,-400)
     glEnd()
+    glPopMatrix()
 
 def display():
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT) 
@@ -41,4 +45,5 @@ def display():
     glLoadIdentity()
 
 glutInit()
+glutInitDisplayMode(GLUT_RGBA) 
 glutDisplayFunc(display)

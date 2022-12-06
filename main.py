@@ -31,7 +31,8 @@ def comet(x,y):
     glEnd()
 
 def initial():
-    drawText("Press Space to Play", -100 , 0, 255, 255, 255)
+    drawBigText("Battle Tank", -80, 50, 255, 255, 255)
+    drawText("Press Space to Play", -110 , 0, 255, 255, 255)
     for i in range(100):
         comet(-w/2,rd.randint(-h,h))
 
@@ -45,7 +46,6 @@ def iterate():
 
 def drawText(text,xpos,ypos,r,g,b):
     color = (r,g,b)
-    glLineWidth(5)
     font_style = GLUT_BITMAP_9_BY_15
     glColor3ub(color[0],color[1],color[2])
     line=0
@@ -55,7 +55,23 @@ def drawText(text,xpos,ypos,r,g,b):
           line=line+1
           glRasterPos2f (xpos, ypos*line)
        else:
+          glutBitmapCharacter(font_style, ord(i))    
+
+def drawBigText(text,xpos,ypos,r,g,b):
+    glPushMatrix()
+    color = (r,g,b)
+    font_style = GLUT_BITMAP_HELVETICA_18
+    glScale(1,1,0)
+    glColor3ub(color[0],color[1],color[2])
+    line=0
+    glRasterPos2f (xpos, ypos)
+    for i in text:
+       if  i=='\n':
+          line=line+1
+          glRasterPos2f (xpos, ypos*line)
+       else:
           glutBitmapCharacter(font_style, ord(i))     
+    glPopMatrix()
 
 def update(value):
     glutPostRedisplay()
@@ -85,10 +101,10 @@ def showScreen():
     glLoadIdentity()
     iterate()
     if start:
-        wall()
+        wall() 
         hp()
-        alien()        
         tank()
+        alien() 
     else:
         initial()
     glFlush()

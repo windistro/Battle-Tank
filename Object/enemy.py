@@ -3,7 +3,7 @@ from OpenGL.GLUT import *
 from OpenGL.GLU import *
 
 def alien():
-    glScalef(.3,.3,0)
+    glScalef(1,1,0)
     #bibir
     glColor3ub(255,0,0)
     glBegin(GL_QUADS)
@@ -228,4 +228,5 @@ def display():
     glLoadIdentity()
 
 glutInit()
+glutInitDisplayMode(GLUT_RGBA) 
 glutDisplayFunc(display)
