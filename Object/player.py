@@ -3,10 +3,10 @@ from OpenGL.GLUT import *
 from OpenGL.GLU import *
 from main import *
 
-pos_x_min = 200
-pos_x_max = 239
-pos_y_min = 100
-pos_y_max = 148
+pos_x_min = -100
+pos_x_max = -61
+pos_y_min = -400
+pos_y_max = -352
 
 pos_x_change = 0
 pos_y_change = 0
@@ -25,15 +25,11 @@ class Tank():
         glVertex(self._pos_x + 9, self._pos_y + 36)
         glEnd()
 
-def bullet():
-    glColor3f(1,1,0)
-    glBegin(GL_QUADS)
-    glVertex2f()
-    glEnd()
-
 
 def tank():
+    global pos_x_max, pos_x_change
     glPushMatrix()
+    glTranslate(-300, -500,0)
     glTranslate(pos_x_change, pos_y_change, 0)
     glColor3f(1,1,0)
     glBegin(GL_POLYGON)
@@ -88,8 +84,21 @@ def tank():
     glVertex2f(215,124)
     glVertex2f(215,115) 
     glEnd()
+    print(pos_x_max, pos_y_max)
+    if pos_x_max > 300:
+        pos_x_change = 360
+        pos_x_max = 300
     glPopMatrix()
-    print(pos_x_max)
+
+def bullet(pos_x, pos_y):
+    glColor3f(1,1,0)
+    glBegin(GL_QUADS)
+    glVertex2f(pos_x + 15, pos_y + 3)
+    glVertex2f(pos_x + 21, pos_y + 3)
+    glVertex2f(pos_x + 21, pos_y + 9)
+    glVertex2f(pos_x + 15, pos_y + 9)
+    glEnd()
+    pos_x += 10
 
 def keyboard(key,x,y):
     global pos_x_change, pos_y_change, pos_x_min, pos_x_max, pos_y_min, pos_y_max
@@ -109,6 +118,8 @@ def keyboard(key,x,y):
         pos_y_change -= 10
         pos_y_min -= 10
         pos_y_max -= 10
+    elif key == b' ':
+        bullet(pos_x_min, pos_y_max)
     # elif ord(key) == 27:
     #     glutDestroyWindow()
 

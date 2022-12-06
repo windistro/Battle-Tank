@@ -3,7 +3,7 @@ from OpenGL.GLUT import *
 from OpenGL.GLU import *
 from Object.environment import *
 from Object.player import *
-from Object.enemy import *
+from musuh import *
 import random as rd
 import ctypes
 
@@ -79,19 +79,6 @@ def key_init(key,x,y):
     if key== b' ':
         start = True
         glutKeyboardFunc(keyboard)
-
-# def keyboard(key,x,y):
-#     global pos_x, pos_y
-#     if key == b'a':
-#         pos_x -= 50
-#     elif key == b'd':
-#         pos_x += 50
-#     elif key == b'w':
-#         pos_y += 50
-#     elif key == b's':
-#         pos_y -= 50
-    # elif key == b' ':
-    #     bullet()
 
 def showScreen():
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT) 

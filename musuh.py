@@ -3,6 +3,8 @@ from OpenGL.GLUT import *
 from OpenGL.GLU import *
 
 def alien():
+    glPushMatrix()
+    glScale(0.3,0.3,0)
     #bibir
     glColor3ub(255,0,0)
     glBegin(GL_QUADS)
@@ -229,32 +231,33 @@ def alien():
     glVertex2f(200,260)
     
     glEnd()
+    glPopMatrix()
 
 
     
 
-def iterate():
-    glViewport(0, 0, 1000, 1000) 
-    glMatrixMode(GL_PROJECTION) 
-    glLoadIdentity()
-    glOrtho(-1000, 1000, -1000, 1000, 0.0, 1.0) 
-    glMatrixMode (GL_MODELVIEW) 
-    glLoadIdentity()
+# def iterate():
+#     glViewport(0, 0, 1000, 1000) 
+#     glMatrixMode(GL_PROJECTION) 
+#     glLoadIdentity()
+#     glOrtho(-1000, 1000, -1000, 1000, 0.0, 1.0) 
+#     glMatrixMode (GL_MODELVIEW) 
+#     glLoadIdentity()
 
-def showScreen():
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT) 
-    glLoadIdentity()
-    alien()
-    iterate()
+# def showScreen():
+#     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT) 
+#     glLoadIdentity()
+#     alien()
+#     iterate()
     glutSwapBuffers()
 
 
-glutInit()
-glutInitDisplayMode(GLUT_RGBA) 
-glutInitWindowSize(1000, 800) 
-glutInitWindowPosition(500, 100)
+# glutInit()
+# glutInitDisplayMode(GLUT_RGBA) 
+# glutInitWindowSize(1000, 800) 
+# glutInitWindowPosition(500, 100)
 
-wind = glutCreateWindow("BattleCity") 
-glutDisplayFunc(showScreen)
-glutIdleFunc(showScreen)
-glutMainLoop()
+# wind = glutCreateWindow("BattleCity") 
+# glutDisplayFunc(showScreen)
+# glutIdleFunc(showScreen)
+# glutMainLoop()
