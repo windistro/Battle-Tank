@@ -27,7 +27,7 @@ class Tank():
 
 
 def tank():
-    global pos_x_max, pos_x_change
+    global pos_x_min, pos_x_max,pos_y_min,pos_y_max, pos_x_change, pos_y_change
     glPushMatrix()
     glTranslate(-300, -500,0)
     glTranslate(pos_x_change, pos_y_change, 0)
@@ -84,10 +84,23 @@ def tank():
     glVertex2f(215,124)
     glVertex2f(215,115) 
     glEnd()
-    print(pos_x_max, pos_y_max)
+    print(pos_x_min, pos_y_min)
     if pos_x_max > 300:
         pos_x_change = 360
+        pos_x_min = 252
         pos_x_max = 300
+    elif pos_y_min < -400:
+        pos_y_change = 0
+        pos_y_min = -400
+        pos_y_max = -361
+    elif pos_x_min < -450:
+        pos_x_change = -350
+        pos_x_min = -450
+        pos_x_max = -402
+    elif pos_y_max > 400:
+        pos_y_change = 751
+        pos_y_min = 361
+        pos_y_max = 400
     glPopMatrix()
 
 def bullet(pos_x, pos_y):
