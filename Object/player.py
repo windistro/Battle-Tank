@@ -3,8 +3,13 @@ from OpenGL.GLUT import *
 from OpenGL.GLU import *
 from main import *
 
-pos_x = 211
-pos_y = 0
+pos_x_min = 200
+pos_x_max = 239
+pos_y_min = 100
+pos_y_max = 148
+
+pos_x_change = 0
+pos_y_change = 0
 
 class Tank():
     def __init__(self,pos_x, pos_y):
@@ -15,19 +20,21 @@ class Tank():
         glColor3f(1,1,0)
         glBegin(GL_POLYGON)
         glVertex(self._pos_x + 9, self._pos_y)
+        glVertex(self._pos_x, self._pos_y)
+        glVertex(self._pos_x, self._pos_y + 36)
+        glVertex(self._pos_x + 9, self._pos_y + 36)
         glEnd()
 
-    def bullet(self):
-        glColor3f(1,1,0)
-        glBegin(GL_QUADS)
-        glVertex2f()
-        glEnd()
+def bullet():
+    glColor3f(1,1,0)
+    glBegin(GL_QUADS)
+    glVertex2f()
+    glEnd()
 
 
 def tank():
-    global pos_x, pos_y
     glPushMatrix()
-    glTranslate(pos_x, pos_y, 0)
+    glTranslate(pos_x_change, pos_y_change, 0)
     glColor3f(1,1,0)
     glBegin(GL_POLYGON)
     glVertex2f(209,100)
@@ -82,18 +89,26 @@ def tank():
     glVertex2f(215,115) 
     glEnd()
     glPopMatrix()
-    print(pos_x)
+    print(pos_x_max)
 
 def keyboard(key,x,y):
-    global pos_x, pos_y
+    global pos_x_change, pos_y_change, pos_x_min, pos_x_max, pos_y_min, pos_y_max
     if key == b'a':
-        pos_x -= 10
+        pos_x_change -= 10
+        pos_x_min -= 10
+        pos_x_max -= 10
     elif key == b'd':
-        pos_x += 10
+        pos_x_change += 10
+        pos_x_min += 10
+        pos_x_max += 10
     elif key == b'w':
-        pos_y += 10
+        pos_y_change += 10
+        pos_y_min += 10
+        pos_y_max += 10
     elif key == b's':
-        pos_y -= 10
+        pos_y_change -= 10
+        pos_y_min -= 10
+        pos_y_max -= 10
     # elif ord(key) == 27:
     #     glutDestroyWindow()
 

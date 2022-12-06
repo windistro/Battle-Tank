@@ -7,9 +7,6 @@ from Object.enemy import *
 import random as rd
 import ctypes
 
-pos_x = 200
-pos_y = 100
-
 w,h = 900, 800
 w_win,h_win = ctypes.windll.user32.GetSystemMetrics(0)/2, ctypes.windll.user32.GetSystemMetrics(1)/2
 start = False
