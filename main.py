@@ -5,7 +5,7 @@ from Object.environment import *
 from Object.player import *
 from Object.enemy import *
 import random as rd
-import ctypes
+import ctypes, OpenGL.GLUT as GLUT
 
 w,h = 900, 800
 w_win,h_win = ctypes.windll.user32.GetSystemMetrics(0)/2, ctypes.windll.user32.GetSystemMetrics(1)/2
@@ -80,6 +80,8 @@ def key_init(key,x,y):
         start = True
         glutKeyboardFunc(keyboard)
 
+def musuh():
+    pass
 # def keyboard(key,x,y):
 #     global pos_x, pos_y
 #     if key == b'a':
