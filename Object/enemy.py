@@ -7,10 +7,9 @@ y_alien = 0
 
 def alien():
     global x_alien, y_alien
-    y_alien+= 5
+    y_alien-= 5
     if y_alien < -800 :
         y_alien = 800
-    
     glTranslated(0, y_alien,0)
     #bibir
     glColor3ub(255,0,0)
