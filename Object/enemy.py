@@ -2,8 +2,16 @@ from OpenGL.GL import *
 from OpenGL.GLUT import * 
 from OpenGL.GLU import *
 
+x_alien = 0
+y_alien = 0
+
 def alien():
-    glScalef(1,1,0)
+    global x_alien, y_alien
+    y_alien+= 5
+    if y_alien < -800 :
+        y_alien = 800
+    
+    glTranslated(0, y_alien,0)
     #bibir
     glColor3ub(255,0,0)
     glBegin(GL_QUADS)
@@ -85,7 +93,7 @@ def alien():
     glVertex2f(100,220)
     glVertex2f(80,220)
     glEnd()
-    glColor3b(191,0,255)
+    glColor3ub(191,0,255)
     glBegin(GL_QUADS)
     glVertex2f(80,220)
     glVertex2f(60,220)
@@ -214,7 +222,6 @@ def alien():
     glVertex2f(260,260)
     glVertex2f(260,260)
     glVertex2f(200,260)
-    
     glEnd()
 
 def display():

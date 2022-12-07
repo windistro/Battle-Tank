@@ -79,9 +79,6 @@ def key_init(key,x,y):
     if key== b' ':
         start = True
         glutKeyboardFunc(keyboard)
-
-def musuh():
-    pass
 # def keyboard(key,x,y):
 #     global pos_x, pos_y
 #     if key == b'a':
