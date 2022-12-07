@@ -1,6 +1,9 @@
 from OpenGL.GL import * 
 from OpenGL.GLUT import * 
 from OpenGL.GLU import *
+from main import drawText
+
+score = 0
 
 def hp():
     glPushMatrix()
@@ -24,14 +27,17 @@ def hp():
     glPopMatrix()
 
 def wall():
+    global score
     glPushMatrix()
     glColor3f(0.5,0.5,0.5)
     glBegin(GL_QUADS)
-    glVertex2f(350,400)
+    glVertex2f(300,400)
     glVertex2f(450,400)
     glVertex2f(450,-400)
-    glVertex2f(350,-400)
+    glVertex2f(300,-400)
     glEnd()
+    drawText("Score :", 325, 0, 255, 255, 255)
+    drawText(str(score),350, -25, 255, 255, 255)
     glPopMatrix()
 
 def display():

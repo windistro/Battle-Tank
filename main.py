@@ -3,7 +3,7 @@ from OpenGL.GLUT import *
 from OpenGL.GLU import *
 from Object.environment import *
 from Object.player import *
-from Object.enemy import *
+from Object.musuh import *
 import random as rd
 import ctypes, OpenGL.GLUT as GLUT
 
