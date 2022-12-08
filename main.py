@@ -10,8 +10,10 @@ import ctypes
 w,h = 900, 800
 w_win,h_win = ctypes.windll.user32.GetSystemMetrics(0)/2, ctypes.windll.user32.GetSystemMetrics(1)/2
 start = False
+win = False
+lose = False
 
-def comet(x,y):
+def star(x,y):
     glColor3f(1,1,0)
     glTranslatef(10,0,0)
     glBegin(GL_POLYGON)
@@ -31,7 +33,7 @@ def initial():
     drawBigText("Battle Tank", -80, 50, 255, 255, 255)
     drawText("Press Space to Play", -110 , 0, 255, 255, 255)
     for i in range(100):
-        comet(-w/2,rd.randint(-h,h))
+        star(-w/2,rd.randint(-h,h))
 
 def iterate():
     glViewport(0, 0, 900, 800) 
@@ -83,14 +85,12 @@ def key_init(key,x,y):
         start = True
 
 def start_game():
-    glClearColor(0.3,0.5,0.1,0)
     wall()
+    hp()
     tank()
     alien()
     speed()
     glutKeyboardFunc(keyboard)
-    # for i in range(75):
-    #     comet(-w/2,rd.randint(-h,h))
 
 def showScreen(): 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
@@ -98,6 +98,8 @@ def showScreen():
     iterate()
     if start:
         start_game()
+    # if win:
+    #     pass
     else:
         initial()
     glFlush()

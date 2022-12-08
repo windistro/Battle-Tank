@@ -103,8 +103,6 @@ def bullet(bul_x, bul_y):
     glEnd()
     glPopMatrix()
 
-bul = False
-
 def keyboard(key,x,y):
     global pos_x_change, pos_y_change, pos_x_min, pos_x_max, pos_y_min, pos_y_max, bul
     if key == b'a' or key == GLUT_KEY_LEFT:
@@ -123,5 +121,3 @@ def keyboard(key,x,y):
     #     pos_y_change -= 20
     #     pos_y_min -= 20
     #     pos_y_max -= 20
-    # elif key == b' ':
-    #     fire()

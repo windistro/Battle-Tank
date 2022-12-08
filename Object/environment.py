@@ -8,6 +8,7 @@ score = 0
 def hp():
     glPushMatrix()
     glColor3f(1,0,0.2)
+    glTranslate(-325,-800,0)
     glBegin(GL_POLYGON)     # 900 x 800 > 450 x 400
     glVertex2f(700, 615)
     glVertex2f(665, 665)
@@ -25,21 +26,6 @@ def hp():
     glVertex2f(700, 675)
     glEnd()
     glPopMatrix()
-
-# def wall():
-#     global score
-#     score += 1
-#     glPushMatrix()
-#     glColor3f(0.5,0.5,0.5)
-#     glBegin(GL_QUADS)
-#     glVertex2f(300,400)
-#     glVertex2f(450,400)
-#     glVertex2f(450,-400)
-#     glVertex2f(300,-400)
-#     glEnd()
-#     drawText("Score :", 325, 0, 255, 255, 255)
-#     drawText(str(score),350, -25, 255, 255, 255)
-#     glPopMatrix()
 
 def gameover():
     glPushMatrix()
@@ -482,6 +468,9 @@ def gameover():
     glEnd()
     drawText(f"Your Score :  {score}", 0, -100, 255, 255, 255)
     glPopMatrix()
+
+def meteor():
+    pass
 
 def display():
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT) 
