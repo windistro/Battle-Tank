@@ -5,7 +5,7 @@ from Object.environment import *
 from Object.player import *
 from Object.musuh import *
 import random as rd
-import ctypes, OpenGL.GLUT as GLUT
+import ctypes
 
 w,h = 900, 800
 w_win,h_win = ctypes.windll.user32.GetSystemMetrics(0)/2, ctypes.windll.user32.GetSystemMetrics(1)/2
@@ -41,6 +41,9 @@ def iterate():
     glMatrixMode (GL_MODELVIEW) 
     glLoadIdentity()
 
+# def fire():
+    # bullet(50,100)
+
 def drawText(text,xpos,ypos,r,g,b):
     color = (r,g,b)
     font_style = GLUT_BITMAP_9_BY_15
@@ -71,36 +74,30 @@ def drawBigText(text,xpos,ypos,r,g,b):
     glPopMatrix()
 
 def update(value):
+    glutTimerFunc(10,update,0)
     glutPostRedisplay()
-    glutTimerFunc(1,update,0)
 
 def key_init(key,x,y):
     global start
     if key== b' ':
         start = True
-        glutKeyboardFunc(keyboard)
-# def keyboard(key,x,y):
-#     global pos_x, pos_y
-#     if key == b'a':
-#         pos_x -= 50
-#     elif key == b'd':
-#         pos_x += 50
-#     elif key == b'w':
-#         pos_y += 50
-#     elif key == b's':
-#         pos_y -= 50
-    # elif key == b' ':
-    #     bullet()
 
-def showScreen():
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT) 
+def start_game():
+    glClearColor(0.3,0.5,0.1,0)
+    wall()
+    tank()
+    alien()
+    speed()
+    glutKeyboardFunc(keyboard)
+    # for i in range(75):
+    #     comet(-w/2,rd.randint(-h,h))
+
+def showScreen(): 
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
     glLoadIdentity()
     iterate()
     if start:
-        wall() 
-        hp()
-        tank()
-        alien() 
+        start_game()
     else:
         initial()
     glFlush()
@@ -114,8 +111,8 @@ def main():
 
     wind = glutCreateWindow("BattleCity") 
     glutDisplayFunc(showScreen)
-    glutTimerFunc(1,update,0)
-    glutIdleFunc(showScreen)
+    glutTimerFunc(10,update,0)
+    # glutIdleFunc(showScreen)
     glutKeyboardFunc(key_init)
     glutMainLoop()
 
